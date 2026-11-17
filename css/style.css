@@ -91,21 +91,22 @@ body.opened .top {
 
 /* Book: fixed pixel size, scaled to the screen by script.js */
 .stage {
-    position: absolute;
+    position: fixed;
     left: 50%;
-    top: 50%;
+    top: 0;
     width: 880px;
     height: 620px;
-    margin: -310px 0 0 -440px;
+    margin: 0;
     z-index: 2;
     perspective: 2400px;
+    transform: translateX(-50%);
 }
-
 .book {
     position: relative;
     width: 880px;
     height: 620px;
-    transform: translateX(var(--tx, -220px)) scale(var(--s, 1));
+    transform: translateX(var(--tx, 0px)) scale(var(--s, 1));
+    transform-origin: top left;
     transition: transform 1.4s cubic-bezier(.6,.05,.2,1);
     transform-style: preserve-3d;
 }
@@ -544,5 +545,130 @@ button:focus-visible {
     * {
         animation: none !important;
         transition-duration: .01s !important;
+    }
+}
+
+
+/* =====================================
+   RESPONSIVE MOBILE DESIGN
+===================================== */
+
+@media screen and (max-width: 900px) {
+
+    html, body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .top {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        font-size: clamp(19px, 5vw, 26px);
+        white-space: nowrap;
+        z-index: 10;
+    }
+
+    .stage {
+        width: 880px;
+        height: 620px;
+        perspective: 1800px;
+    }
+
+    .book {
+        will-change: transform;
+    }
+
+    /* Keep the original page proportions */
+    .page, .face {
+        width: 440px;
+        height: 620px;
+    }
+
+    /* Letter readability */
+    .back {
+        overflow-y: auto;
+        overscroll-behavior: contain;
+    }
+
+    /* Photo page */
+    .right {
+        overflow: hidden;
+    }
+
+    /* Reply tab */
+    .reply-tab {
+        top: auto;
+        bottom: 90px;
+        transform: none;
+        padding: 11px 8px;
+        font-size: 13px;
+        z-index: 8;
+    }
+
+    /* Reply panel */
+    .panel {
+        width: min(340px, 90vw);
+        max-height: 80dvh;
+        overflow-y: auto;
+        z-index: 12;
+    }
+
+    .panel.show {
+        transform: translate(0, -50%);
+    }
+
+    /* Navigation buttons */
+    .ctl {
+        font-size: 13px;
+        padding: 10px 14px;
+    }
+
+    #closeBtn {
+        right: 10px;
+        bottom: 12px;
+    }
+
+    #navBtn {
+        bottom: 12px;
+    }
+}
+
+/* Small phones */
+@media screen and (max-width: 480px) {
+
+    .top {
+        font-size: clamp(17px, 4.8vw, 22px);
+    }
+
+    .reply-tab {
+        bottom: 80px;
+    }
+
+    .panel {
+        width: 90vw;
+        padding: 18px;
+    }
+
+    .panel h3 {
+        font-size: 28px;
+    }
+}
+
+/* Landscape phones */
+@media screen and (max-width: 900px) and (orientation: landscape) {
+
+    .top {
+        top: 5px;
+        font-size: 18px;
+    }
+
+    .stage {
+        /* JavaScript calculates the actual scale and position */
+    }
+
+    .reply-tab {
+        bottom: 65px;
     }
 }

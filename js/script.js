@@ -39,13 +39,52 @@ document.querySelector("[name=name]").value=CONFIG.name;
 /* book open / close + scaling (all sizes are px, the whole book is scaled to fit the screen) */
 const book=document.getElementById("book"),navBtn=document.getElementById("navBtn");
 let isOpen=false,view="L";
-function layout(){
-  const mobile=innerWidth<900;document.body.classList.toggle("mobile",mobile);
-  let s,tx;
-  if(mobile){s=Math.min(1,(innerWidth-24)/440,(innerHeight-100)/620);tx=!isOpen?-220:(view==="L"?220:-220)}
-  else{s=Math.min(1,(innerWidth-40)/880,(innerHeight-80)/620);tx=isOpen?0:-220}
-  book.style.setProperty("--s",s);book.style.setProperty("--tx",tx*s+"px");
+
+function layout() {
+    const mobile = innerWidth < 900;
+
+    document.body.classList.toggle("mobile", mobile);
+
+    // Calculate proportional scale without changing page dimensions
+    const availableWidth = mobile ? innerWidth - 32 : innerWidth - 40;
+    const availableHeight = mobile ? innerHeight - 150 : innerHeight - 80;
+
+    const pageWidth = mobile ? 440 : 880;
+
+    const s = Math.min(
+        1,
+        availableWidth / pageWidth,
+        availableHeight / 620
+    );
+
+    let tx;
+
+    if (mobile) {
+        // Mobile: show one complete page at a time
+        if (isOpen && view === "L") {
+            // Letter page
+            tx = 440 - (220 * s);
+        } else {
+            // Cover or photo page
+            tx = 440 - (660 * s);
+        }
+    } else {
+        // Desktop: show the complete two-page book
+        tx = isOpen
+            ? 440 - (440 * s)
+            : 440 - (660 * s);
+    }
+
+    // Apply responsive positioning
+    book.style.setProperty("--s", s);
+    book.style.setProperty("--tx", `${tx}px`);
+
+    // Center the scaled book vertically
+    const topOffset = mobile ? 24 : 0;
+    document.querySelector(".stage").style.top =
+        `${(innerHeight - (620 * s)) / 2 + topOffset}px`;
 }
+
 function setOpen(v){
   isOpen=v;view="L";book.classList.toggle("open",v);document.body.classList.toggle("opened",v);
   navBtn.querySelector("span").textContent="See photo";layout();if(v)burst();
