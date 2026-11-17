@@ -4,7 +4,7 @@ const CONFIG = {
   issue: "THE LEADERSHIP ISSUE",
   hb: "Happy Birthday",
   name: "Rakesh Sir",
-  coverCaption: "For the leader who listens first, guides with calm, and builds teams that grow.",
+  coverCaption: "For the gentleman whose humility, clarity, and calm presence speak volumes.",
   greeting: "Dear Rakesh Sir,",
   letter: [
     "Wishing you a very Happy Birthday! May this year bring you good health, joy, and every success you work so hard for.",
