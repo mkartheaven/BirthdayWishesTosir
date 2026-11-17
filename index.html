@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy Birthday</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎂</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,500&family=Caveat:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<canvas id="fx"></canvas>
+<div class="top" id="top"><i class="fa-solid fa-star"></i> A small surprise for you <i class="fa-solid fa-star"></i></div>
+
+<main class="stage">
+  <div class="book" id="book">
+    <!-- right page (photo) -->
+    <section class="page right" aria-label="Photo page">
+      <div class="photo" role="img" aria-label="Photo together"></div>
+      <div class="cap2" data-edit="photoCaption"></div>
+      <div class="co"><i class="fa-solid fa-laptop-code"></i> <span data-edit="company"></span></div>
+    </section>
+
+    <!-- flipping cover: front = magazine cover, back = letter -->
+    <div class="cover">
+      <div class="face front">
+        <div class="spine"></div>
+        <div class="mast" data-edit="mast"></div>
+        <div class="sub" data-edit="issue"></div>
+        <div class="hb" data-edit="hb"></div>
+        <div class="nm" data-edit="name"></div>
+        <div class="cap" data-edit="coverCaption"></div>
+        <button class="open-btn" id="openBtn" aria-label="Open the card"><i class="fa-solid fa-gift"></i> Open card</button>
+      </div>
+      <div class="face back">
+        <div class="letter">
+          <h2 data-edit="greeting"></h2>
+          <div id="letter"></div>
+          <div class="sign"><span data-edit="from"></span><small data-edit="fromRole"></small></div>
+          <div class="badges">
+            <span><i class="fa-solid fa-ear-listen"></i>Listens first</span>
+            <span><i class="fa-solid fa-compass"></i>Guides growth</span>
+            <span><i class="fa-solid fa-shield-heart"></i>Genuine</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<button class="ctl" id="closeBtn"><i class="fa-solid fa-book-bookmark"></i> Close card</button>
+<button class="ctl" id="navBtn"><i class="fa-solid fa-image"></i> <span>See photo</span></button>
+<button class="reply-tab" id="tab"><i class="fa-solid fa-comment-dots"></i> Say thank you</button>
+
+<aside class="panel" id="panel" aria-label="Reply form">
+  <button class="x" id="x" aria-label="Close">×</button>
+  <h3 data-edit="replyTitle"></h3>
+  <div class="chips" id="chips"></div>
+  <form id="form">
+    <input name="name" placeholder="Your name" value="">
+    <input name="email" type="email" placeholder="Your email (optional)">
+    <textarea name="message" rows="4" placeholder="Write a message…" required></textarea>
+    <input type="hidden" name="_subject" id="subj">
+    <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+    <button class="send" type="submit"><i class="fa-solid fa-paper-plane"></i> Send reply</button>
+    <div id="status" role="status"></div>
+    
+  </form>
+</aside>
+
+<script src="js/script.js"></script>
+</body>
+</html>
