@@ -322,9 +322,9 @@ body.opened .top {
 .letter p {
     font-family: "Playfair Display", serif;
     font-weight: 500;
-    font-size: 16.5px;
+    font-size: 14.5px;
     line-height: 1.55;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
 }
 
 .sign {

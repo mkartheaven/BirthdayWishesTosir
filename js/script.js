@@ -70,7 +70,7 @@ form.onsubmit=async e=>{
   try{
     const r=await fetch("https://formspree.io/f/"+CONFIG.formspreeId,{method:"POST",body:new FormData(form),headers:{Accept:"application/json"}});
     if(!r.ok)throw 0;
-    st.textContent="Sent! Thank you 🎉";form.reset();burst();
+    st.textContent="Sent! reply 🎉";form.reset();burst();
   }catch{st.textContent="Could not send. Please try again."}
 };
 
